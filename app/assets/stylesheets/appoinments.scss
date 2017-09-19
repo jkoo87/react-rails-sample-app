@@ -1,0 +1,71 @@
+// Place all the styles related to the Appoinments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+html{
+  height: 100vh;
+}
+body {
+  width: 100%;
+  margin:auto;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  h1, h2{
+    text-align: center;
+  }
+}
+.rdtPicker{
+  margin: 0 auto;
+}
+.rdtTimeToggle{
+  background-color: gold;
+}
+.appointment{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  &__forms{
+    text-align: center;
+    margin-right: 30px;
+  }
+  &__list{
+    position: relative;
+    width: 400px;
+    margin-left: 30px;
+    &__detail{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      overflow: scroll;
+      &__div {
+        border-bottom: solid 1px #ccc;
+      }
+    }
+  }
+}
+
+input[name='title'], input[name='appt_time']{
+  width: 250px;
+}
+
+.submit-button {
+  background: #CC0000;
+  color: #FFFFFF;
+  cursor: pointer;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  font-size: 20px;
+  padding: 10px;
+}
+
+@media screen and (max-width: 769px){
+  .appointment__forms{
+    margin-right: 0;
+  }
+  .appointment__list{
+    margin-left: 0;
+    &__detail{
+      position: inherit;
+    }
+  }
+}
