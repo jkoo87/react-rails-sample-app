@@ -9,6 +9,8 @@ body {
   margin:auto;
   font-family: Arial, sans-serif;
   line-height: 1.5;
+  position: absolute;
+  height: 100vh;
   h1, h2{
     text-align: center;
   }
@@ -31,6 +33,7 @@ body {
     position: relative;
     width: 400px;
     margin-left: 30px;
+    min-height: 500px;
     &__detail{
       position: absolute;
       height: 100%;
