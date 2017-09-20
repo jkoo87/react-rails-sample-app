@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+Appointment.create!(
+  title:         "Example Admin",
+  appt_time:      Time.zone.now,
+)
+
+
+Appointment.create!(
+  title:         "Second Appointment",
+  appt_time:      Time.zone.now,
+)

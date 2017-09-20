@@ -1,4 +1,7 @@
-class AppointmentForm extends React.Component {
+import React from 'react';
+import {formatDate} from '../utils/format'
+import Datetime from 'react-datetime'
+export default class AppointmentForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     this.props.onFormSubmit()
@@ -6,20 +9,20 @@ class AppointmentForm extends React.Component {
 
   handleChange(e) {
     const name = e.target.name;
-    obj = {};
+    const obj = {};
     obj[name] = e.target.value;
     this.props.onUserInput(obj)
   }
   setAppTime(e){
     const name = 'appt_time';
-    obj = {};
+    const obj = {};
     obj[name] = e.toDate();
     this.props.onUserInput(obj);
   }
   render(){
     const inputProps ={name: 'appt_time'}
     const showCurrentDate = this.props.appt_time?
-                            formatDate(this.props.appt_time) : formatDate(new Date())
+                            this.props.appt_time : new Date()
     return(
       <div className='appointment__forms'>
         <h2>Make a new Appointment</h2>
@@ -34,7 +37,7 @@ class AppointmentForm extends React.Component {
           <div>
             <input name='appt_time'
               placeholder='Time'
-              value={showCurrentDate}
+              value={formatDate(showCurrentDate)}
               onChange={this.handleChange.bind(this)}
             />
           </div>
