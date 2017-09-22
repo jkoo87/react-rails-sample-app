@@ -1,10 +1,15 @@
 {
   "name": "calreact",
   "private": true,
+  "engines": {
+    "node": "8.4.0",
+    "yarn": "1.0.2"
+  },
   "dependencies": {
     "@rails/webpacker": "^3.0.1",
     "axios": "^0.16.2",
     "babel-preset-react": "^6.24.1",
+    "connect": "^3.6.4",
     "immutability-helper": "^2.4.0",
     "jquery": "^3.2.1",
     "moment": "^2.18.1",
@@ -13,9 +18,33 @@
     "react-datetime": "^2.10.1",
     "react-dom": "^15.6.1",
     "react-moment": "^0.6.5",
-    "react-on-rails": "^9.0.2"
+    "react-on-rails": "^9.0.2",
+    "react-router-dom": "^4.2.2",
+    "yarn": "^0.24.6"
   },
   "devDependencies": {
+    "eslint": "^4.7.2",
+    "eslint-config-shakacode": "^15.0.0",
+    "eslint-plugin-react": "^7.3.0",
     "webpack-dev-server": "^2.8.2"
-  }
+  },
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkoo87/react-rails-sample-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkoo87/react-rails-sample-app/issues"
+  },
+  "homepage": "https://github.com/jkoo87/react-rails-sample-app#readme"
 }

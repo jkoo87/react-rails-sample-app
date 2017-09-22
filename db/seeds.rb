@@ -9,11 +9,11 @@
 
 Appointment.create!(
   title:         "Example Admin",
-  appt_time:      Time.zone.now,
+  appt_time:      "September 29 2017, 12:00 am",
 )
 
 
 Appointment.create!(
   title:         "Second Appointment",
-  appt_time:      Time.zone.now,
+  appt_time:      "September 29 2018, 12:00 am",
 )

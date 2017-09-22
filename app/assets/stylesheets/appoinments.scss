@@ -1,73 +1,104 @@
 // Place all the styles related to the Appoinments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-html{
-  height: 100vh;
-}
+html,
 body {
   width: 100%;
-  margin:auto;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
   font-family: Arial, sans-serif;
   line-height: 1.5;
   position: absolute;
   height: 100vh;
-  h1, h2{
+  h1,
+  h2 {
     text-align: center;
   }
+  h2 {
+    border-bottom: double gold;
+    border-top: double gold;
+    margin-bottom: 0;
+  }
+  h3 {
+    background-color: skyblue;
+    padding-left: 10px;
+  }
 }
-.rdtPicker{
+.rdtPicker {
   margin: 0 auto;
 }
-.rdtTimeToggle{
+.rdtTimeToggle {
   background-color: gold;
 }
-.appointment{
+.appointments {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  &__forms{
+  &__forms {
     text-align: center;
     margin-right: 30px;
+    h2 {
+      margin-bottom: 20px;
+    }
   }
-  &__list{
+  &__list {
     position: relative;
     width: 400px;
     margin-left: 30px;
     min-height: 500px;
-    &__detail{
+    &__detail {
       position: absolute;
       height: 100%;
       width: 100%;
       overflow: scroll;
-      &__div {
-        border-bottom: solid 1px #ccc;
-      }
     }
   }
 }
 
-input[name='title'], input[name='appt_time']{
+.appointment {
+  border-bottom: solid 1px #ccc;
+}
+
+input[name="title"],
+input[name="appt_time"] {
   width: 250px;
+  height: 30px;
+  font-size: 1.1em;
 }
 
 .submit-button {
-  background: #CC0000;
-  color: #FFFFFF;
+  background: #cc0000;
+  color: #ffffff;
   cursor: pointer;
-  border: 0;
   box-shadow: none;
   border-radius: 0px;
   font-size: 20px;
   padding: 10px;
 }
 
-@media screen and (max-width: 769px){
-  .appointment__forms{
+.submit-button:disabled {
+  background: grey;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin: 0;
+  text-align: left;
+  &__detail:first-letter {
+    text-transform: capitalize;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .appointments__forms {
     margin-right: 0;
   }
-  .appointment__list{
+  .appointments__list {
     margin-left: 0;
-    &__detail{
+    &__detail {
       position: inherit;
     }
   }
