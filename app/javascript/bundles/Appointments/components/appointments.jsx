@@ -12,85 +12,31 @@ export default class Appointments extends React.Component {
   static propTypes = {
     appointments: PropTypes.array.isRequired
   };
+  static defaultProps = {
+    appointments: []
+  };
   constructor(props, _railsContext) {
     super(props);
     this.state = {
-      appointments: this.props.appointments,
-      title: { value: "", valid: false },
-      appt_time: { value: new Date(), valid: false },
-      formErrors: {},
-      formValid: false
+      appointments: this.props.appointments
     };
   }
 
-  handleUserInput = (fieldName, fieldValue, validations) => {
-    const newFieldState = update(this.state[fieldName], {
-      value: { $set: fieldValue }
-    });
-    this.setState({ [fieldName]: newFieldState }, () =>
-      this.validateField(fieldName, fieldValue, validations)
-    );
-  };
-
-  validateField(fieldName, fieldValue, validations) {
-    let fieldValid;
-    let fieldErrors = validations.reduce((errors, v) => {
-      let e = v(fieldValue);
-      if (e !== "") {
-        errors.push(e);
-      }
-      return errors;
-    }, []);
-
-    fieldValid = fieldErrors.length === 0;
-
-    const newFieldState = update(this.state[fieldName], {
-      valid: { $set: fieldValid }
-    });
-    const newFormErrors = update(this.state.formErrors, {
-      $merge: { [fieldName]: fieldErrors }
-    });
-
-    this.setState(
-      {
-        [fieldName]: newFieldState,
-        formErrors: newFormErrors
-      },
-      this.validateForm
-    );
-  }
-
-  validateForm() {
-    this.setState({
-      formValid: this.state.title.valid && this.state.appt_time.valid
-    });
-  }
-
-  handleFormSubmit = () => {
-    const time_avail = this.state.appt_time ? this.state.appt_time : new Date();
-    const appointment = {
-      title: this.state.title.value,
-      appt_time: time_avail.value
-    };
-    axios
-      .post("/appointments", {
-        authenticity_token: ReactOnRails.authenticityToken(),
-        appointment: appointment
-      })
+  componentDidMount() {
+    axios({
+      method: "get",
+      url: `/appointments.json`
+    })
       .then(response => {
-        this.addNewAppointment(response.data);
-        this.resetFormErrors();
+        this.setState({ appointments: response.data });
       })
       .catch(error => {
-        this.setState({ formErrors: error.response.data });
+        console.log("Error");
+        console.log(error);
       });
-  };
-
-  resetFormErrors() {
-    this.setState({ formErrors: {} });
   }
 
-  addNewAppointment(appointment) {
+  addNewAppointment = appointment => {
     const appointments = update(this.state.appointments, {
       $push: [appointment]
     });
@@ -98,23 +44,19 @@ export default class Appointments extends React.Component {
       appointments: appointments.sort(function(a, b) {
         return new Date(a.appt_time) - new Date(b.appt_time);
       }),
-      title: { value: "", valid: false },
-      appt_time: { value: "", valid: false }
+      title: { value: "", valid: false }
     });
-  }
+  };
 
   render() {
     return (
       <div className="appointments">
-        <AppointmentForm
-          title={this.state.title}
-          appt_time={this.state.appt_time}
-          formValid={this.state.formValid}
-          formErrors={this.state.formErrors}
-          onUserInput={this.handleUserInput}
-          onFormSubmit={this.handleFormSubmit}
+        <AppointmentForm handleNewAppointment={this.addNewAppointment} />
+        <AppointmentsList
+          appointments={this.state.appointments}
+          props={this.props}
+          appointmentOpened={this.appointmentOpened}
         />
-        <AppointmentsList appointments={this.state.appointments} />
       </div>
     );
   }

@@ -1,3 +1,4 @@
-%h1 React/Ruby on Rails Calendar
-
-= react_component("CalApp", props: {appointments: @appointments}, prerender: false)
+- if user_signed_in?
+  = current_user.email
+  = link_to('Sign out', destroy_user_session_path, method: :delete)
+= react_component("CalApp", prerender: false)

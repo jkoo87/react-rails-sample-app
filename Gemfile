@@ -7,6 +7,7 @@ end
 
 gem "react_on_rails", "9.0.0"
 gem "webpacker", "~> 3.0"
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
