@@ -1,5 +1,5 @@
-import moment from 'moment'
+import moment from "moment";
 
-export const formatDate = function(d){
-  return moment(d).format('MMMM DD YYYY, h:mm a')
-}
+export const formatDate = function(d) {
+  return d ? moment(d).format("MMMM DD YYYY, h:mm a") : "";
+};
